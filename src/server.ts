@@ -6,8 +6,12 @@ import * as path from "path";
 import * as favicon from "serve-favicon";
 
 export class Server {
+    public static bootstrap(): Server {
+        return new Server();
+    }
+
     private readonly app: express.Application;
-    public constructor() {
+    constructor() {
         this.app = express();
 
         this.config();
