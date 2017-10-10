@@ -55,14 +55,14 @@ export class Server {
     private routes(): void {
         // visit: http://localhost:3000/
         const router = express.Router();
-        routes.Home.init(router);
+        routes.Home.register(router);
         this.app.use("/", router);
     }
 
     private apis(): void {
         // visit: http://localhost:3000/apis/users
         const router = express.Router();
-        apis.Users.init(router);
+        apis.Users.register(router);
         this.app.use("/apis", router);
     }
 }
