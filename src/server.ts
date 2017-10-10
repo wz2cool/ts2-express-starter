@@ -4,6 +4,7 @@ import * as express from "express";
 import * as logger from "morgan";
 import * as path from "path";
 import * as favicon from "serve-favicon";
+import * as apis from "./apis";
 import * as routes from "./routes";
 
 export class Server {
@@ -16,7 +17,7 @@ export class Server {
         this.app = express();
 
         this.routes();
-        this.api();
+        this.apis();
         this.config();
     }
 
@@ -52,13 +53,16 @@ export class Server {
     }
 
     private routes(): void {
+        // visit: http://localhost:3000/
         const router = express.Router();
         routes.Home.init(router);
-
-        this.app.use(router);
+        this.app.use("/", router);
     }
 
-    private api(): void {
-        // empty for now
+    private apis(): void {
+        // visit: http://localhost:3000/apis/users
+        const router = express.Router();
+        apis.Users.init(router);
+        this.app.use("/apis", router);
     }
 }
