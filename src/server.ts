@@ -57,9 +57,7 @@ export class Server {
 
     private routes(): void {
         // visit: http://localhost:3000/
-        const router = express.Router();
-        routes.Home.register(router);
-        this.app.use("/", router);
+        this.app.use("/", routes.Home.getRoute());
     }
 
     private apis(): void {

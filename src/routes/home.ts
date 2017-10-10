@@ -1,9 +1,12 @@
 import * as express from "express";
 
 export class Home {
-    public static register(router: express.Router): void {
-        router.get("/", (req, res, next) => {
+    public static getRoute(): express.Router {
+        const homeRoute = express.Router();
+        homeRoute.get("/", (req, res, next) => {
             res.render("index", { title: "Express" });
         });
+
+        return homeRoute;
     }
 }
