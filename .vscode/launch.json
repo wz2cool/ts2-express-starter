@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}\\dist\\bin\\www.js",
-            "preLaunchTask": "tsc: build - tsconfig.json",
+            "preLaunchTask": "gulp: build",
             "outFiles": [
                 "${workspaceFolder}/dist/**/*.js"
             ]
