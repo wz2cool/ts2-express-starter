@@ -2,7 +2,7 @@
   "name": "ts2-express-starter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": ".\\dist\\bin\\www.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -33,6 +33,9 @@
     "@types/morgan": "^1.7.33",
     "@types/node": "^6.0.89",
     "@types/serve-favicon": "^2.2.29",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.2.2",
     "tslint": "^5.7.0",
     "typescript": "^2.5.3"
   }
