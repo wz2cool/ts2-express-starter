@@ -4,6 +4,8 @@ import * as express from "express";
 import * as logger from "morgan";
 import * as path from "path";
 import * as favicon from "serve-favicon";
+import * as swaggerJSDoc from "swagger-jsdoc";
+import * as swaggerUi from "swagger-ui-express";
 import * as apis from "./apis";
 import * as routes from "./routes";
 
@@ -15,9 +17,6 @@ export class Server {
     public readonly app: express.Application;
     constructor() {
         this.app = express();
-
-        this.routes();
-        this.apis();
         this.config();
     }
 
@@ -32,6 +31,10 @@ export class Server {
         this.app.use(bodyParser.urlencoded({ extended: false }));
         this.app.use(cookieParser());
         this.app.use(express.static(path.join(__dirname, "public")));
+
+        this.routes();
+        this.apis();
+        this.swagger();
 
         // catch 404 and forward to error handler
         this.app.use((req, res, next) => {
@@ -60,9 +63,26 @@ export class Server {
     }
 
     private apis(): void {
-        // visit: http://localhost:3000/apis/users
-        const router = express.Router();
-        apis.Users.register(router);
-        this.app.use("/apis", router);
+        // visit: http://localhost:3000/api/users
+        this.app.use("/users", apis.userApi);
+    }
+
+    private swagger(): void {
+        const apiPath = path.join(__dirname, "apis", "*");
+        const options = {
+            apis: [apiPath],
+            swaggerDefinition: {
+                info: {
+                    title: "ts-express-starter",
+                    version: "1.0.0",
+                },
+            },
+        };
+        const swaggerSpec = swaggerJSDoc(options);
+        this.app.get("/api-docs.json", (req, res) => {
+            res.setHeader("Content-Type", "application/json");
+            res.send(swaggerSpec);
+        });
+        this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     }
 }
