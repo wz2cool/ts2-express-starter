@@ -4,6 +4,7 @@ import * as express from "express";
 import * as logger from "morgan";
 import * as path from "path";
 import * as favicon from "serve-favicon";
+import * as routes from "./routes";
 
 export class Server {
     public static bootstrap(): Server {
@@ -14,9 +15,9 @@ export class Server {
     constructor() {
         this.app = express();
 
-        this.config();
         this.routes();
         this.api();
+        this.config();
     }
 
     private config(): void {
@@ -51,6 +52,10 @@ export class Server {
     }
 
     private routes(): void {
+        const router = express.Router();
+        routes.Home.init(router);
+
+        this.app.use(router);
     }
 
     private api(): void {
