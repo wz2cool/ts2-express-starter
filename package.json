@@ -5,7 +5,8 @@
   "main": ".\\dist\\bin\\www.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist\\bin\\www.js"
+    "start": "node dist\\bin\\www.js",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
