@@ -12,5 +12,5 @@ To start the server run:
 `$ npm start`
 
 ## default page:
-Home page: http://localhost:3000
+Home page: http://localhost:3000  
 Swagger page: http://localhost:3000/api-docs
