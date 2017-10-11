@@ -1,9 +1,9 @@
-# TypeScript 2 + Express + Node.js + swagger
+# TypeScript 2 + Express + Node.js + Swagger
 This is a base template for creating express project with ts2 and swagger.
 
 ## install 
 Install the node package via:
-`$ npm install`
+`$ npm install`  
 AND then run the gulp task to complie the Typescript:
 `$ npm run build`
 
